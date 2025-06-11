@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://rcxqpi5dhq6p"]
+
+[ext_resource type="Script" uid="uid://brm8y0y5pnv6t" path="res://ball.gd" id="1_x8fbi"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_cbx31"]
+radius = 0.43
+
+[sub_resource type="BoxMesh" id="BoxMesh_x8fbi"]
+size = Vector3(0.6, 0.6, 0.6)
+
+[node name="BALL" type="RigidBody3D"]
+script = ExtResource("1_x8fbi")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_cbx31")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_x8fbi")
