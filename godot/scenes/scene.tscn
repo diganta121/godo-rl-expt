@@ -1,0 +1,33 @@
+[gd_scene load_steps=6 format=3 uid="uid://lma12oa6h0pi"]
+
+[ext_resource type="Script" uid="uid://d07w2kgfk1urk" path="res://assets/scene.gd" id="1_s6dok"]
+[ext_resource type="PackedScene" uid="uid://c4b7btcp31n7k" path="res://scenes/obstacle.tscn" id="2_4msxo"]
+[ext_resource type="PackedScene" uid="uid://c1gloejbbo24r" path="res://scenes/obstacle_spawner.tscn" id="3_5fb3c"]
+[ext_resource type="PackedScene" uid="uid://bqv76oycb32n5" path="res://scenes/player.tscn" id="4_5fb3c"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5fb3c"]
+size = Vector2(544, 295)
+
+[node name="scene" type="Node2D"]
+script = ExtResource("1_s6dok")
+
+[node name="obstacle" parent="." instance=ExtResource("2_4msxo")]
+position = Vector2(1107, 149)
+
+[node name="obstacle spawner" parent="." instance=ExtResource("3_5fb3c")]
+position = Vector2(24, -2)
+
+[node name="Player" parent="." instance=ExtResource("4_5fb3c")]
+position = Vector2(80, 350)
+motion_mode = 1
+slide_on_ceiling = false
+
+[node name="ref_pos" type="Node2D" parent="."]
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(85, 377)
+shape = SubResource("RectangleShape2D_5fb3c")
+
+[connection signal="player_dead" from="Player" to="." method="_on_character_body_2d_player_dead"]

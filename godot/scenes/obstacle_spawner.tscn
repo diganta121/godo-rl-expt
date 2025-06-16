@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=3 uid="uid://c1gloejbbo24r"]
+
+[ext_resource type="Script" uid="uid://d2ldqf68qvowu" path="res://assets/obstacle_spawner.gd" id="1_vyba0"]
+[ext_resource type="PackedScene" uid="uid://c4b7btcp31n7k" path="res://scenes/obstacle.tscn" id="2_ra2ui"]
+
+[sub_resource type="Curve2D" id="Curve2D_gmt3g"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 1252, 630, 0, 0, 0, 0, 1383, 564, 0, 0, 0, 0, 1175, 98, 0, 0, 0, 0, 1366, 19, 0, 0, 0, 0, 1252, 630)
+}
+point_count = 5
+
+[node name="obstacle spawner" type="Node2D"]
+script = ExtResource("1_vyba0")
+obstacle_scene = ExtResource("2_ra2ui")
+
+[node name="SpawnTimer" type="Timer" parent="."]
+autostart = true
+
+[node name="Path2D" type="Path2D" parent="."]
+curve = SubResource("Curve2D_gmt3g")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Path2D"]
+position = Vector2(1252, 630)
+rotation = -0.466696
+
+[node name="obs_holder" type="Node2D" parent="."]

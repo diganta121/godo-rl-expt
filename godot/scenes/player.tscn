@@ -1,0 +1,25 @@
+[gd_scene load_steps=5 format=3 uid="uid://bqv76oycb32n5"]
+
+[ext_resource type="Script" uid="uid://d0mproww0higc" path="res://assets/char.gd" id="1_3vyb7"]
+[ext_resource type="Texture2D" uid="uid://dsyyd2a6kl5ja" path="res://icon.svg" id="2_g2els"]
+[ext_resource type="Script" uid="uid://v1enix6vllpj" path="res://addons/godot_rl_agents/controller/ai_controller_2d.gd" id="3_qhqgy"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qhqgy"]
+size = Vector2(56.5, 40.25)
+
+[node name="Player" type="CharacterBody2D"]
+script = ExtResource("1_3vyb7")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(1.2219e-06, 1)
+scale = Vector2(0.46875, 0.328125)
+texture = ExtResource("2_g2els")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 1.125)
+shape = SubResource("RectangleShape2D_qhqgy")
+
+[node name="AIController2D" type="Node2D" parent="."]
+script = ExtResource("3_qhqgy")
+control_mode = 2
+metadata/_custom_type_script = "uid://v1enix6vllpj"
