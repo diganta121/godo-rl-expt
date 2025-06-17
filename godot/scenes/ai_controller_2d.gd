@@ -119,7 +119,10 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	update_visualizations()
 
+func _process(delta: float) -> void:
+	pass # No direct player input handling here anymore
 
+# --- Game Logic Functions ---
 
 # Helper function to clear all obstacles (used on restart)
 func _clear_all_obstacles() -> void:
@@ -136,7 +139,6 @@ func restart_game() -> void:
 	
 	if is_instance_valid(player_node): # Robustness check
 		player_node.velocity = Vector2(0,0)
-		# Reposition player to a fixed starting point or randomized on Y
 		player_node.set_position(Vector2(80, screen_size.y / 2 + randi_range(-100,100)))
 	else:
 		printerr("ERROR: Player node is not valid on restart! Ensure 'Player' CharacterBody2D is a child of Main.")
@@ -158,13 +160,10 @@ func _on_Player_player_dead() -> void:
 		print("Player died!")
 		game_running = false
 		current_episode_reward += -10.0 # Collision punishment
-		# --- TEMPORARY DEBUG: Force restart for testing without RL agent ---
-		# REMOVE THIS LINE WHEN TRAINING WITH YOUR EXTERNAL RL AGENT!
-		restart_game()
-		# --- END TEMPORARY DEBUG ---
 		# The RL framework will call get_reward_and_done() and then trigger a reset.
-		# So, no direct restart_game() call here for RL training normally.
+		# So, no direct restart_game() call here for RL training.
 
+# Called every second by the timer
 func _on_survival_reward_timer_timeout() -> void:
 	if game_running:
 		current_episode_reward += 0.1 # Small reward every second

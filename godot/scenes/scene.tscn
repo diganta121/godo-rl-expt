@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://lma12oa6h0pi"]
+[gd_scene load_steps=7 format=3 uid="uid://lma12oa6h0pi"]
 
 [ext_resource type="Script" uid="uid://d07w2kgfk1urk" path="res://assets/scene.gd" id="1_s6dok"]
 [ext_resource type="PackedScene" uid="uid://c4b7btcp31n7k" path="res://scenes/obstacle.tscn" id="2_4msxo"]
 [ext_resource type="PackedScene" uid="uid://c1gloejbbo24r" path="res://scenes/obstacle_spawner.tscn" id="3_5fb3c"]
 [ext_resource type="PackedScene" uid="uid://bqv76oycb32n5" path="res://scenes/player.tscn" id="4_5fb3c"]
+[ext_resource type="Script" uid="uid://jpro2mjviqy1" path="res://addons/godot_rl_agents/sync.gd" id="5_gjmho"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5fb3c"]
 size = Vector2(544, 295)
@@ -30,4 +31,17 @@ slide_on_ceiling = false
 position = Vector2(85, 377)
 shape = SubResource("RectangleShape2D_5fb3c")
 
+[node name="Sync" type="Node" parent="."]
+script = ExtResource("5_gjmho")
+metadata/_custom_type_script = "uid://jpro2mjviqy1"
+
+[node name="SurvivalRewardTimer" type="Timer" parent="."]
+
+[node name="visualization" type="Node2D" parent="."]
+
+[node name="VelocityLine2D" type="Line2D" parent="visualization"]
+
+[node name="NearestObstaclesLine2D" type="Line2D" parent="visualization"]
+
 [connection signal="player_dead" from="Player" to="." method="_on_character_body_2d_player_dead"]
+[connection signal="timeout" from="SurvivalRewardTimer" to="." method="_on_timer_timeout"]
