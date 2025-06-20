@@ -17,7 +17,7 @@ func _ready() -> void:
 func spawn_obstacle() -> void:
 	if not game_running:
 		return
-	print("spawn")
+	#print("spawn")
 	var new_obstacle = obstacle_scene.instantiate()
 	obs_holder.add_child(new_obstacle)
 	# Randomly position the obstacle

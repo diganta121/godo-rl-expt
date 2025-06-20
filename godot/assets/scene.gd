@@ -11,9 +11,9 @@ var score :int= 0
 var high_score :int = 0 # To track the high score for the +5 bonus
 
 @onready var player_node = $Player # Reference to your CharacterBody2D player
-@onready var ref_pos = $ref_pos   # Reference to your ref_pos Node2D
+@onready var ref_pos = $ref_pos   # Reference to your ref_pos Node2D reference position if i need when tiling this instance
 @onready var obstacle_spawner = $"obstacle spawner" # Reference to your obstacle spawner node
-@onready var collision_area = $Area2D # This seems to be the player's collision area
+@onready var collision_area = $Area2D # This is to clear out obstacles near spawn when it dies
 
 @onready var survival_reward_timer = $SurvivalRewardTimer # Timer for per-second reward
 @onready var velocity_line = $VelocityLine2D # Line2D for player velocity visualization

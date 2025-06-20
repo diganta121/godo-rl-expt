@@ -44,4 +44,5 @@ metadata/_custom_type_script = "uid://jpro2mjviqy1"
 [node name="NearestObstaclesLine2D" type="Line2D" parent="visualization"]
 
 [connection signal="player_dead" from="Player" to="." method="_on_character_body_2d_player_dead"]
-[connection signal="timeout" from="SurvivalRewardTimer" to="." method="_on_timer_timeout"]
+[connection signal="player_dead" from="Player" to="." method="_on_Player_player_dead"]
+[connection signal="timeout" from="SurvivalRewardTimer" to="." method="_on_survival_reward_timer_timeout"]
